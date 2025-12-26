@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "logger.h"
+#include "tostring.h"
 
 int main()
 {
@@ -12,6 +13,19 @@ int main()
         dgrdch::logInfo("App started");
     }
 
+    sf::Texture knightTexture;
+    if (!knightTexture.loadFromFile("knight.png"))
+    {
+        dgrdch::logError("Unable to load knight.png");
+        exit(1);
+    }
+    sf::Sprite knight{knightTexture};
+    sf::Vector2u knightSize = knightTexture.getSize();
+    // knight.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+    // knight.setPosition({static_cast<float>(640u - knightSize.x), knight.getPosition().y});
+    knight.setOrigin(knightSize.x / 2, knightSize.y / 2);
+    sf::Vector2f increment({2.0f, 2.0f});
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -22,22 +36,30 @@ int main()
                 window.close();
             }
         }
-        window.clear(sf::Color::Red);
+        window.clear(sf::Color::White);
 
-        sf::RectangleShape rectangle(sf::Vector2f(128.0f, 128.0f));
-        rectangle.setFillColor(sf::Color::Blue);
-        rectangle.setPosition(320, 240);
-        rectangle.setOrigin(64, 64);
-        window.draw(rectangle);
-
-        sf::Texture worldTilesetTexture;
-        if (!worldTilesetTexture.loadFromFile("world_tileset.png"))
+        if (
+            knight.getPosition().x + (knightSize.x / 2) > window.getSize().x &&
+                increment.x > 0 ||
+            knight.getPosition().x - (knightSize.x / 2) < 0 &&
+                increment.x < 0)
         {
-            dgrdch::logError("Unable to load world_tileset.png");
-            exit(1);
+            // Reverse the direcetion on X axis
+            increment.x = -increment.x;
         }
-        sf::Sprite worldTileset{worldTilesetTexture};
-        window.draw(worldTileset);
+
+        if (
+            knight.getPosition().y + (knightSize.y / 2) > window.getSize().y &&
+                increment.y > 0 ||
+            knight.getPosition().y - (knightSize.y / 2) < 0 &&
+                increment.y < 0)
+        {
+            // Reverse the direcetion on Y axis
+            increment.y = -increment.y;
+        }
+
+        knight.setPosition(knight.getPosition() + increment);
+        window.draw(knight);
 
         window.display();
     }
