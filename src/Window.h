@@ -1,0 +1,37 @@
+#pragma once
+#include <string>
+#include <SFML/Graphics.hpp>
+
+class Window
+{
+public:
+    explicit Window(const std::string &l_title, sf::Vector2u &l_size);
+    virtual ~Window();
+
+    void BeginDraw();
+    void EndDraw();
+
+    void Update();
+
+    bool IsDone();
+    bool IsFullscreen();
+    sf::Vector2u GetWindowSize();
+
+    void ToggleFullscreen();
+
+    void Draw(sf::Drawable &l_drawable);
+
+    Window() = delete;
+    Window(const Window &) = delete;
+    Window &operator=(const Window &) = delete;
+
+private:
+    sf::RenderWindow m_window;
+    sf::Vector2u m_size;
+    std::string m_title;
+    bool m_isDone;
+    bool m_isFullscreen;
+
+    void Destroy();
+    void Create();
+};
