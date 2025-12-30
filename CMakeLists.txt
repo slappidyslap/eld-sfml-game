@@ -12,6 +12,9 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(DegredachSFMLGame src/main.cpp)
+add_executable(DegredachSFMLGame
+    src/main.cpp
+    src/Window.cpp
+    src/Game.cpp)
 target_compile_features(DegredachSFMLGame PRIVATE cxx_std_17)
 target_link_libraries(DegredachSFMLGame PRIVATE sfml-graphics)
