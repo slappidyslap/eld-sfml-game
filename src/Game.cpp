@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : m_window("Chapter 2", sf::Vector2u(800, 600))
+Game::Game() : m_window("Chapter 2", sf::Vector2u(800, 600), 60)
 {
     m_knightTexture.loadFromFile("knight.png");
     m_knight.setTexture(m_knightTexture);

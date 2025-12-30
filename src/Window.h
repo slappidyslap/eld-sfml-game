@@ -5,7 +5,10 @@
 class Window
 {
 public:
-    explicit Window(const std::string &l_title, const sf::Vector2u &l_size);
+    explicit Window(
+        const std::string &l_title,
+        const sf::Vector2u &l_size,
+        const unsigned int &maxFps);
     virtual ~Window();
 
     void BeginDraw();
@@ -29,6 +32,7 @@ private:
     sf::RenderWindow m_window;
     sf::Vector2u m_size;
     std::string m_title;
+    unsigned int m_maxFps;
     bool m_isDone;
     bool m_isFullscreen;
 

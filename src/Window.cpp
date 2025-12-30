@@ -1,8 +1,12 @@
 #include "Window.h"
 
-Window::Window(const std::string &l_title, const sf::Vector2u &l_size)
+Window::Window(
+    const std::string &l_title,
+    const sf::Vector2u &l_size,
+    const unsigned int &l_maxFps)
     : m_title(l_title),
-      m_size(l_size)
+      m_size(l_size),
+      m_maxFps(l_maxFps)
 {
     m_isDone = false;
     m_isFullscreen = false;
@@ -76,6 +80,7 @@ void Window::Create()
     // modeBitsPerPixel – Pixel depths in bits per pixel
     // Construct the video mode with its attributes
     m_window.create({m_size.x, m_size.y, 32}, m_title, style);
+    m_window.setFramerateLimit(m_maxFps);
 }
 
 void Window::Destroy()
