@@ -5,7 +5,7 @@
 class Window
 {
 public:
-    explicit Window(const std::string &l_title, sf::Vector2u &l_size);
+    explicit Window(const std::string &l_title, const sf::Vector2u &l_size);
     virtual ~Window();
 
     void BeginDraw();

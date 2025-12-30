@@ -1,6 +1,6 @@
 #include "Window.h"
 
-Window::Window(const std::string &l_title, sf::Vector2u &l_size)
+Window::Window(const std::string &l_title, const sf::Vector2u &l_size)
     : m_title(l_title),
       m_size(l_size)
 {

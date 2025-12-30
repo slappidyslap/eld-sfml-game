@@ -1,5 +1,4 @@
 {
-    "editor.formatOnSave": true,
-    "terminal.integrated.defaultProfile.windows": "Command Prompt"
-    
+  "editor.formatOnSave": true,
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
 }
