@@ -4,7 +4,7 @@ Game::Game() : m_window("Chapter 2", sf::Vector2u(800, 600), 60)
 {
     m_knightTexture.loadFromFile("knight.png");
     m_knight.setTexture(m_knightTexture);
-    m_increment = sf::Vector2i(4, 4); // (скорость) рыцаря
+    m_increment = sf::Vector2i(400, 400); // (скорость) рыцаря
 }
 
 Game::~Game() {}
@@ -25,6 +25,10 @@ void Game::Render()
     m_window.Draw(m_knight);
     m_window.EndDraw();
 }
+
+void Game::RestartClock() { m_elapsed = m_clock.restart(); }
+
+sf::Time Game::GetElapsed() { return m_elapsed; }
 
 void Game::MoveKnight()
 {
@@ -47,9 +51,10 @@ void Game::MoveKnight()
         m_increment.y = -m_increment.y;
     }
 
+    float elapsedSeconds = m_elapsed.asSeconds();
     m_knight.setPosition(
-        m_knight.getPosition().x + m_increment.x,
-        m_knight.getPosition().y + m_increment.y);
+        m_knight.getPosition().x + (m_increment.x * elapsedSeconds),
+        m_knight.getPosition().y + (m_increment.y * elapsedSeconds));
 }
 
 Window *Game::GetWindow() { return &m_window; }

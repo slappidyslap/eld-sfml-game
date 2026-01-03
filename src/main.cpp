@@ -11,6 +11,7 @@ int main()
         game.HandleInput();
         game.Update();
         game.Render();
+        game.RestartClock();
     }
     dgrdch::logInfo("App closed");
 }
