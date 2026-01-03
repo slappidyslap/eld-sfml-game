@@ -65,6 +65,11 @@ sf::Vector2u Window::GetWindowSize()
     return m_size;
 }
 
+unsigned int Window::GetMaxFps()
+{
+    return m_maxFps;
+}
+
 void Window::ToggleFullscreen()
 {
     m_isFullscreen = !m_isFullscreen;

@@ -26,7 +26,7 @@ void Game::Render()
     m_window.EndDraw();
 }
 
-void Game::RestartClock() { m_elapsed = m_clock.restart(); }
+void Game::RestartClock() { m_elapsed += m_clock.restart(); }
 
 sf::Time Game::GetElapsed() { return m_elapsed; }
 
@@ -51,10 +51,14 @@ void Game::MoveKnight()
         m_increment.y = -m_increment.y;
     }
 
-    float elapsedSeconds = m_elapsed.asSeconds();
-    m_knight.setPosition(
-        m_knight.getPosition().x + (m_increment.x * elapsedSeconds),
-        m_knight.getPosition().y + (m_increment.y * elapsedSeconds));
+    float frametime = 1.0f / m_window.GetMaxFps();
+    if (m_elapsed.asSeconds() >= frametime)
+    {
+        m_knight.setPosition(
+            m_knight.getPosition().x + (m_increment.x * frametime),
+            m_knight.getPosition().y + (m_increment.y * frametime));
+        m_elapsed -= sf::seconds(frametime);
+    }
 }
 
 Window *Game::GetWindow() { return &m_window; }

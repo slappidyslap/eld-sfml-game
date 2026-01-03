@@ -22,6 +22,7 @@ private:
     void MoveKnight();
 
     Window m_window;
+
     sf::Texture m_knightTexture;
     sf::Sprite m_knight;
     sf::Vector2i m_increment;

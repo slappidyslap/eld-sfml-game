@@ -19,6 +19,7 @@ public:
     bool IsDone();
     bool IsFullscreen();
     sf::Vector2u GetWindowSize();
+    unsigned int GetMaxFps();
 
     void ToggleFullscreen();
 
