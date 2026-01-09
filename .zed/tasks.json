@@ -5,7 +5,7 @@
   {
     "label": "Build",
     "command": "cmake --build build",
-    // && $ZED_WORKTREE_ROOT\\build\\bin\\DegredachSFMLGame.exe
+    // && $ZED_WORKTREE_ROOT\\build\\bin\\EldSfmlGame.exe
     //"args": [],
     // Env overrides for the command, will be appended to the terminal's environment from the settings.
     // "env": { "foo": "bar" },
@@ -58,7 +58,7 @@
 
   {
     "label": "Run",
-    "command": "$ZED_WORKTREE_ROOT\\build\\bin\\DegredachSFMLGame.exe",
+    "command": "$ZED_WORKTREE_ROOT\\build\\bin\\EldSfmlGame.exe",
     "shell": "system",
   },
 
@@ -70,7 +70,7 @@
 
   {
     "label": "Build & Run",
-    "command": "cmake --build build && $ZED_WORKTREE_ROOT\\build\\bin\\DegredachSFMLGame.exe",
+    "command": "cmake --build build && $ZED_WORKTREE_ROOT\\build\\bin\\EldSfmlGame.exe",
     "shell": "system",
   },
 ]
