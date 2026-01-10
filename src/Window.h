@@ -1,42 +1,41 @@
 #pragma once
+
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <string>
-#include <SFML/Graphics.hpp>
 
-class Window
-{
+class Window {
 public:
-    explicit Window(
-        const std::string &l_title,
-        const sf::Vector2u &l_size,
-        const unsigned int &maxFps);
-    virtual ~Window();
+  explicit Window(const std::string &title, const sf::Vector2u &size,
+                  const unsigned int &maxFps);
+  virtual ~Window();
 
-    void BeginDraw();
-    void EndDraw();
+  void beginDraw();
+  void endDraw();
+  void update();
+  void toggleFullscreen();
+  void draw(const sf::Drawable &drawable);
 
-    void Update();
+  bool isDone() const;
+  bool isFullscreen() const;
+  sf::Vector2u getWindowSize() const;
+  unsigned int getMaxFps() const;
 
-    bool IsDone();
-    bool IsFullscreen();
-    sf::Vector2u GetWindowSize();
-    unsigned int GetMaxFps();
+  Window() = delete;
+  Window(Window &&) = delete;
+  Window &operator=(Window &&) = delete;
+  Window(const Window &) = delete;
+  Window &operator=(const Window &) = delete;
 
-    void ToggleFullscreen();
+protected:
+  sf::RenderWindow sfWindow_;
+  sf::Vector2u size_;
+  std::string title_;
+  unsigned int maxFps_;
+  bool isDone_;
+  bool isFullscreen_;
 
-    void Draw(sf::Drawable &l_drawable);
-
-    Window() = delete;
-    Window(const Window &) = delete;
-    Window &operator=(const Window &) = delete;
-
-private:
-    sf::RenderWindow m_window;
-    sf::Vector2u m_size;
-    std::string m_title;
-    unsigned int m_maxFps;
-    bool m_isDone;
-    bool m_isFullscreen;
-
-    void Destroy();
-    void Create();
+  void destroy();
+  void create();
 };

@@ -1,31 +1,22 @@
-#pragma once
-#include "Window.h"
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
-class Game
-{
+class Game {
+protected:
+  sf::Texture playerTexture_;
+  sf::Sprite player_;
+
 public:
-    Game();
-    virtual ~Game();
+  explicit Game(sf::Texture playerTexture, sf::Sprite player)
+      : playerTexture_(std::move(playerTexture)), player_(std::move(player)) {};
 
-    void HandleInput();
-    void Update();
-    void Render();
-    void RestartClock();
-    sf::Time GetElapsed();
+  virtual ~Game() {
 
-    Window *GetWindow();
+  };
 
-    Game(const Game &) = delete;
-    Game &operator=(const Game &) = delete;
-
-private:
-    void MoveKnight();
-
-    Window m_window;
-
-    sf::Texture m_knightTexture;
-    sf::Sprite m_knight;
-    sf::Vector2i m_increment;
-    sf::Clock m_clock;
-    sf::Time m_elapsed;
+  Game() = delete;
+  Game(const Game &) = delete;
+  Game(Game &&) = delete;
+  Game &operator=(const Game &) = delete;
+  Game &operator=(Game &&) = delete;
 };
